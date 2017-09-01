@@ -49,7 +49,7 @@ function activeButtons(state) {
 function addMusicToList() {
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
-        var id = url.match(/v=([A-z]|[0-9])*/)[0].slice(2);
+        var id = url.match(/v=([A-z]|[0-9]|\-)*/)[0].slice(2);
         var xmlHttp = new XMLHttpRequest();
         try {
             xmlHttp.open( "GET", 'http://yt-dl.furnocte.fr/api/musics/' + id, false );
