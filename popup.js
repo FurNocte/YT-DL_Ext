@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+var DloaderServer = 'http://yt-dl.furnocte.fr';
+
 function checkStatus() {    
     var xmlHttp = new XMLHttpRequest();
     try {
-        xmlHttp.open( "GET", 'http://yt-dl.furnocte.fr/api/status', false );
+        xmlHttp.open( "GET", DloaderServer + '/api/status', false );
         xmlHttp.send(null);
         if (xmlHttp.status == 200)
             return true;
@@ -52,12 +54,12 @@ function addMusicToList() {
         var id = url.match(/v=([A-z]|[0-9]|\-)*/)[0].slice(2);
         var xmlHttp = new XMLHttpRequest();
         try {
-            xmlHttp.open( "GET", 'http://yt-dl.furnocte.fr/api/musics/' + id, false );
+            xmlHttp.open( "GET", DloaderServer + '/api/musics/' + id, false );
             xmlHttp.send(null);
             if (xmlHttp.status == 200) {
                 var url = xmlHttp.responseText.slice(1, -1);
                 var link = document.createElement('a');
-                link.href = 'http://yt-dl.furnocte.fr' + url;
+                link.href = DloaderServer + url;
                 link.setAttribute('target','_blank');
 
                 if (link.download !== undefined) {
@@ -87,12 +89,12 @@ function addVideoToList() {
         var id = url.match(/v=([A-z]|[0-9])*/)[0].slice(2);
         var xmlHttp = new XMLHttpRequest();
         try {
-            xmlHttp.open( "GET", 'http://yt-dl.furnocte.fr/api/videos/' + id, false );
+            xmlHttp.open( "GET", DloaderServer + '/api/videos/' + id, false );
             xmlHttp.send(null);
             if (xmlHttp.status == 200) {
                 var url = xmlHttp.responseText.slice(1, -1);
                 var link = document.createElement('a');
-                link.href = 'http://yt-dl.furnocte.fr' + url;
+                link.href = DloaderServer + url;
                 link.setAttribute('target','_blank');
 
                 if (link.download !== undefined) {
